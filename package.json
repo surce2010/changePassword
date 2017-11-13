@@ -1,0 +1,23 @@
+{
+  "name": "changepassword",
+  "version": "1.0.0",
+  "description": "解决OA密码设置限制，始终使用习惯密码",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surce2010/changePassword.git"
+  },
+  "author": "dingshaohua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/surce2010/changePassword/issues"
+  },
+  "homepage": "https://github.com/surce2010/changePassword#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "querystring": "^0.2.0"
+  }
+}
