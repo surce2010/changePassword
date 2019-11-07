@@ -4,8 +4,9 @@ var http = require("https");
 var cheerio = require("cheerio");
 var querystring = require("querystring");
 
-var accountName = "caoyang3"; // 用户名
-var originPassword = "cy15295730857!"; // 初始密码
+var accountName = "dingsh"; // 用户名
+var originPassword = ""; // 初始密码
+var expectPassword = ""; // 初始密码
 
 var times = 0; // 记录执行的次数
 var chgTimes = 10; // 预期执行的次数
@@ -19,10 +20,10 @@ chgPassword(originPassword, originPassword + times);
 function chgPassword(oldPassword, newPassword) {
   var postData = querystring.stringify({
     __VIEWSTATE:
-      "AEyLx69rBdNHqDiOpA5HiqeArWOeBRg2MxD3CvaIHkwSFJVPWMuM9/lTNyYHF+gIgnLkhAZvbzQesoRGjHK9QXh9LpMFposRSWK1L5rVQ/aDwmbud6E6ETOQ1sPdkV0OatqPXr2Tu8ad3/lCdicbqWZpA0PUM6nkjg8waai4rrI1mERWXqrHlQ2IBUSlFQd15wXzypzQSu0RD62NMUNhZ/vMSEXNWorMIDJV44BzoAlBHQvTHcvw06XCqnoiXrC8HolmE4mT1wgDWQzuGXTqQLzZr+J493P+vIDjlwDzXqkfs2s5DwmsfwgIWID/cVVxzdPVHc28HJtQ+1akYOwvjF3JBzF3jVo5moZ3cCfrG5OzvN16hJh0H/bEAcRd2AirxFUMMaUi7FqVWzVOY30WJRr93Q59oFGTd26Ny2a+Ow0nc27NqXctKtI5h3CXI9zZkfFyVFs/0gXQ1YQtygl2yOht6VYr8yjrk89ZQsxb15rI7ucfgvkehuDGO0A1n+sNea+m06zSP7VbRcnwhRuyHLOacTQ=",
+      "Luvn0rQ0aNlsX85pAwDYXmZ1tELMp47NLzrWAKGsVLw9UKxYOnmaYtrPk1dP0zz4ovX6yVINu3cfOOCgptutPLDdT2pvDm0wU0NbIuKjiEKN0k5v8uYB1ce5HLJeiYxKUeI0O15lbj/yrPm6MLEf0bl01f7By3ws4z1zYvJfdpC04hf7yXapeXNxOhtHvzPFhXVyxcrGgzpdDs7iBT/UEUg8OtlE5zaA0Pt9CPC7zrC9N9GMBBsOwnHtMedigDXdwdwXQtfSaiEf75JGN7hqhA4sYuK/HZB+4P2ee/ViWg9nhzKuQWuKwZ4+oCiFgL+okx+Y1ntGczNbC4I6PhwNRdqQ+amzQCI01AcABFo1m3pK3wDUa0jL/uSo0BnhVjTgFTOsPjmOcsjgpdt/pCLG43uN3NEIoj9UEOXU+MdL7Ux5ai4I7hcdLX+Mbc/igcnPqx+o5Na4ydujr9Lw5gKTTUTtGEYc8pSHoceB6Ba9ehStdrE8hqoMLjaQP1pYAbcn89iLkaWveOIQbkqmvzHeWnaDiz4zu6dbg3U0DbsYudBVxoUa1IN7PHyzx/sTld3ZmkTAMx+MR7Bo/pMZwQAsHOx9cvi9KvnPt+UmIzPKj3PBK0zfbVy45Xx/e2IOhI427P8gew==",
     __VIEWSTATEGENERATOR: "2B297099",
     __EVENTVALIDATION:
-      "xbXPZuBIq3fStxmjIIUpbmdh6+xcPrRwuUIc6O9tgxqwsIazCSpjtrT3jE7+R6s4JkkZm7pn2JY9F5LMNFGOuD80nVG+6YU6RgbjRriAJ3LF+HRJ9ECTgMYbL0rX5V/cQyMQ8uOlNnvULOXwz0+TEvcgXNBM4TJJ4u2txDKpIfCeAsCRSm5MnB38HWEPJgJgFBFz+zO3YYrTLx5RJW/yuTwHeaHj6lA4TtBzqM7L5ec7eQe9oeAdLFDajlbWIMl2UNHnoA==",
+      "Ha5H4MTcDpMZF1nv49HvW1YiKp5ScNBMVcbGNB7aP/3FGyo+s7BzqzWeExAVTunkYkcvfCPxnXDTBo+4gAkYh12ea6UzjcT/kzEXqOaQI1pnDjXJRW3YvJ8EJXDkHOXTMWbYZfNj6QxF6y77lPG+zfZ2S4N5QpWhOdU3YvARdwDPb2T8Czd3fipo5PTSU00QjL5UtbWxOQHDsF3ZlpIUjKrcUXO26YUupTbAoBNzp1pjcoOxW5njlcef8rrqzdqIg4e6WA==",
     dropdownListDomainName: "AI",
     textBoxAccountName: accountName,
     textBoxOldPassword: oldPassword,
@@ -58,7 +59,10 @@ function chgPassword(oldPassword, newPassword) {
               }
               if (times < chgTimes) {
                 console.log("修改密码已执行" + (times + 1) + "次");
-                chgPassword(newPassword, times === chgTimes - 1 ? originPassword : newPassword + times);
+                chgPassword(
+                  newPassword,
+                  times === chgTimes - 1 ? expectPassword : newPassword + times
+                );
                 times++;
               }
             } else {
